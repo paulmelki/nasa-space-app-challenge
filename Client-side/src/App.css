@@ -1,38 +1,63 @@
-.App {
-  text-align: center;
+body {
+  margin: 0;
+  padding: 0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.map-container {
+  height: 100vh;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.sidebar {
+  background-color: rgba(35, 55, 75, 0.9);
+  color: #fff;
+  padding: 6px 12px;
+  font-family: monospace;
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 12px;
+  border-radius: 4px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+.button {
+  width: 200px;
+  height: 20px;
+  background-color: #fff;
+  color: rgba(35, 55, 75, 0.9);
+  padding: 1px 12px;
+  font-family: monospace;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  margin: 12px;
+  border-radius: 4px;
+}
+
+button {
+  width: 200px;
+  height: 20px;
+  font-family: monospace;
+  margin: 12px;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  border-radius: 4px;
 }
 
-.App-link {
-  color: #61dafb;
+.calculation-box {
+  background-color: #fff;
+  border-radius: 3px;
+  bottom: 30px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  font: 12px/20px "Helvetica Neue", Arial, Helvetica, sans-serif;
+  padding: 10px;
+  right: 10px;
+  z-index: 999999999999999;
+  position: absolute;
+  max-width: 400px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+p {
+  font-family: "Open Sans";
+  margin: 0;
+  font-size: 13px;
 }
