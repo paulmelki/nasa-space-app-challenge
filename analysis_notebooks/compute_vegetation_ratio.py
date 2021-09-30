@@ -12,6 +12,7 @@ that computes the propotion of green pixels in a certain image.
 import os
 import cv2
 import numpy as np
+import pandas as pd
 
 # define the function
 
@@ -78,8 +79,24 @@ def vegetation_ratio(img, img_name, save_dir=os.getcwd()):
 # define the directory that contains all the images
 image_dir = r"E:\Projects\nasa_space_challenge\data\drone_videos_mrhabib\images"
 
-for entry in os.scandir(image_dir):
-    img = cv2.imread(entry.path)
+# for entry in os.scandir(image_dir):
+#     img = cv2.imread(entry.path)
 
-    print(vegetation_ratio(img, img_name=entry.name,
-                           save_dir=r"E:\Projects\nasa_space_challenge\data\drone_videos_mrhabib\images\transformed"))
+#     print(vegetation_ratio(img, img_name=entry.name,
+#                            save_dir=r"E:\Projects\nasa_space_challenge\data\drone_videos_mrhabib\images\transformed"))
+
+
+drone_data = pd.read_excel(r"E:\Projects\nasa_space_challenge\data\drone_videos_mrhabib\videos_data_pivot.xlsx")
+
+vege_ratios = []
+for i in range(len(drone_data)):
+    img_path = drone_data.loc[i, "Image_Path"]
+    img_name = drone_data.loc[i, "Image_Name"]
+    img = cv2.imread(img_path)
+    vege_ratio = vegetation_ratio(img, img_name=img_name)
+    vege_ratios.append(vege_ratio)
+
+drone_data["Vege_Ratio_Drone"] = vege_ratios
+
+drone_data.to_csv(r"E:\Projects\nasa_space_challenge\data\drone_videos_mrhabib\videos_data_pivot_vegeratio.csv", 
+                    index=False)
