@@ -1,16 +1,23 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./App";
-import reportWebVitals from "./reportWebVitals";
+import { BrowserRouter, Route, Redirect, Switch } from "react-router-dom";
+import "mapbox-gl/dist/mapbox-gl.css";
+// pages
+import MapTest from "./MapTest.js";
+import LandingPage from "./LandingPage.js";
+
+// others
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <BrowserRouter>
+    <Switch>
+      <Route exact path="/">
+        <LandingPage />
+      </Route>
+      <Route exact path="/MapTest">
+        <MapTest />
+      </Route>
+    </Switch>
+  </BrowserRouter>,
   document.getElementById("root")
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
