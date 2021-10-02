@@ -6,11 +6,14 @@ import MapboxDraw from "@mapbox/mapbox-gl-draw";
 import * as turf from "@turf/turf";
 import "mapbox-gl/dist/mapbox-gl.css";
 // import turf from "@turf/area";
+var coordinates;
+var dataResults;
 
 mapboxgl.accessToken =
   "pk.eyJ1IjoiamFkbWF0dGEiLCJhIjoiY2toc3phc2piMDN6YjJzb3l5MGgybDR4aSJ9.L9-ctcz9go1A5j7tspYQiQ";
 
 export default function Map() {
+  const history = useHistory();
   const [lng, setLng] = useState(36.0862684249878);
   const [lat, setLat] = useState(33.91717944990014);
   const [zoom, setZoom] = useState(17);
@@ -48,7 +51,7 @@ export default function Map() {
     function updateArea(e) {
       const data = draw.getAll();
       if (e.type !== "draw.delete") {
-        console.log(data.features[0].geometry.coordinates);
+        console.log(data.features[0].geometry);
         coordinates = data.features[0].geometry.coordinates;
         var temp = "";
         for (var j in data.features[0].geometry.coordinates) {
@@ -64,17 +67,6 @@ export default function Map() {
           }
         }
         alert(temp);
-      }
-      const answer = document.getElementById("calculated-area");
-      if (data.features.length > 0) {
-        console.log(turf);
-        const area = turf.area(data);
-        // Restrict the area to 2 decimal points.
-        const rounded_area = Math.round(area * 100) / 100;
-        answer.innerHTML = `<p><strong>${rounded_area}</strong></p><p>square meters</p>`;
-      } else {
-        answer.innerHTML = "";
-        if (e.type !== "draw.delete") alert("Click the map to draw a polygon.");
       }
     }
 
@@ -116,13 +108,14 @@ export default function Map() {
                 return response.json();
               })
               .then(function (data) {
-                const items = data;
-                console.log(items);
+                dataResults = data;
+                console.log(dataResults);
               })
               .catch((error) => console.log(error));
+            history.push("Results", { data: 123 });
           }}
         >
-          Process Data
+          Process Region
         </button>
       </div>
       <div className="calculation-box">

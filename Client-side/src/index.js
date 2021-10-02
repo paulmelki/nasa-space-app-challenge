@@ -3,22 +3,22 @@ import ReactDOM from "react-dom";
 import { BrowserRouter, Route, Redirect, Switch } from "react-router-dom";
 import "mapbox-gl/dist/mapbox-gl.css";
 // pages
-import Map from "./Map.js";
+import MapTest from "./MapTest.js";
 import LandingPage from "./LandingPage.js";
-import App from './App'
+import Blog from "./blog/Blog.js";
 // others
 
 ReactDOM.render(
   <BrowserRouter>
     <Switch>
       <Route exact path="/">
-        <App />
-      </Route>
-      <Route exact path="/Map">
-        <Map />
-      </Route>
-      <Route exact path="/LandingPage">
         <LandingPage />
+      </Route>
+      <Route exact path="/MapTest">
+        <MapTest />
+      </Route>
+      <Route exact path="/Results">
+        <Blog />
       </Route>
     </Switch>
   </BrowserRouter>,
