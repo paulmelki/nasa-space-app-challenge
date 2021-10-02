@@ -49,6 +49,7 @@ export default function Map() {
       const data = draw.getAll();
       if (e.type !== "draw.delete") {
         console.log(data.features[0].geometry.coordinates);
+        coordinates = data.features[0].geometry.coordinates;
         var temp = "";
         for (var j in data.features[0].geometry.coordinates) {
           for (var p in data.features[0].geometry.coordinates[j]) {
@@ -100,6 +101,28 @@ export default function Map() {
           }}
         >
           Print Location
+        </button>
+        <button
+          className="button"
+          onClick={() => {
+            fetch(`/get_coordinates`, {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(coordinates),
+            })
+              .then(function (response) {
+                return response.json();
+              })
+              .then(function (data) {
+                const items = data;
+                console.log(items);
+              })
+              .catch((error) => console.log(error));
+          }}
+        >
+          Process Data
         </button>
       </div>
       <div className="calculation-box">

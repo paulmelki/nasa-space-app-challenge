@@ -1,8 +1,7 @@
-from flask import Flask 
-import geopandas as gpd 
+from flask import Flask, json
+from flask import current_app,jsonify,request
 import pandas as pd
 import numpy as np
-import cv2
 app = Flask(__name__)
 
 
@@ -10,12 +9,15 @@ app = Flask(__name__)
 def members():
     return {"members": ["Jad", "Rudy", "Fida", "Habib"]};
 
-@app.route("/get_coordinates")  
-def get_coordinates():
-    return
+@app.route('/get_coordinates', methods=['POST'])
+def get_coordinates(): 
+    print("Coordinates are being printed")
+    data = request.get_json();
+    print(data)
+    return jsonify(data);
 
-def process_coordinates(coords):
-    coords_df = pd.DataFrame(coords)
+# def process_coordinates(coords):
+#     coords_df = pd.DataFrame(coords)
 
 
 if __name__ == "__main__":
