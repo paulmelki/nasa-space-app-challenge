@@ -28,3 +28,4 @@ drone_data_geo = gpd.GeoDataFrame(drone_data, geometry=gpd.points_from_xy(drone_
 polygons_contains = gpd.sjoin(vege_cover_nasa, drone_data_geo, op='contains')
 
 polygons_contains.to_csv(r"E:\Projects\nasa_space_challenge\data\polygons_contains.csv")
+

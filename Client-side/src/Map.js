@@ -7,6 +7,7 @@ import * as turf from "@turf/turf";
 import "mapbox-gl/dist/mapbox-gl.css";
 // import turf from "@turf/area";
 
+var coordinates;
 mapboxgl.accessToken =
   "pk.eyJ1IjoiamFkbWF0dGEiLCJhIjoiY2toc3phc2piMDN6YjJzb3l5MGgybDR4aSJ9.L9-ctcz9go1A5j7tspYQiQ";
 
