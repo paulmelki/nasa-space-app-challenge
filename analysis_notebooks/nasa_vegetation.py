@@ -15,7 +15,6 @@ from numpy import poly
 import pandas as pd
 
 from pyproj import CRS
-from shapely import geometry
 
 crs=CRS('EPSG:4326')
 import pyproj 
