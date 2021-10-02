@@ -41,7 +41,7 @@ export default function SignInSide() {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    history.push("MapTest");
+    history.push("Map");
     // eslint-disable-next-line no-console
     console.log({
       email: data.get("email"),
