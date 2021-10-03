@@ -19,4 +19,4 @@ An important challenge which poses itself is then the methodology of combination
 
 As our drone data are spatial points, and the NASA-retrieved data are polygons with lower resolution, the data combination technique consists of applying a “point-in-polygon” approach which finds, for a given spatial point (drone) the polygon to which it belongs (NASA). From here, the variables can be fused together and aggregated over the spatial field if needed using multiple possible techniques, the simplest being an average over the spatial field.
 
-
+![sdsdf](https://drive.google.com/file/d/1CTDCpEmFUzC5pTNi8cqxP3zU2rZ3lIQO/view?usp=sharing)
