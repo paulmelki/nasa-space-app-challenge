@@ -14,22 +14,27 @@ other downloaded satellite data.
 
 """
 
-# import required libraries
+# import required libraries.
 import geopandas as gpd
 import pandas as pd
-from pyproj import CRS
-from constants import PYPROJ_DATADIR, NASA_VEGE_COVER_PATH, DRONE_DATA_PATH
+import pyproj
+import constants as cts
 
-# define the correct CRS and projections database (required for correct functioning)
-crs=CRS('EPSG:4326')
-import pyproj 
-pyproj.datadir.set_data_dir(PYPROJ_DATADIR)
+# define the correct CRS and projections database (required for correct functioning).
+crs = pyproj.CRS('EPSG:4326')
+pyproj.datadir.set_data_dir(cts.PYPROJ_DATADIR)
 
-# read the NASA vegetation cover dataset
-vege_cover_nasa = gpd.read_file(NASA_VEGE_COVER_PATH)
-drone_data = pd.read_csv(DRONE_DATA_PATH)
+# read the NASA vegetation cover dataset.
+vege_cover_nasa = gpd.read_file(cts.NASA_VEGE_COVER_PATH)
+
+# read the drone data.
+drone_data = pd.read_csv(cts.DRONE_DATA_PATH)
+# convert the drone data to GeoDataFrame format.
 drone_data_geo = gpd.GeoDataFrame(drone_data, geometry=gpd.points_from_xy(drone_data.Longitude, drone_data.Latitude))
 
+# apply point-in-polygon on the two datasets, to combine the two datasets
+# together.
 polygons_contains = gpd.sjoin(vege_cover_nasa, drone_data_geo, op='contains')
 
-polygons_contains.to_csv(r"E:\Projects\nasa_space_challenge\data\polygons_contains.csv")
+# Save the obtained dataset to a .csv file.
+polygons_contains.to_csv(fr"{cts.LOCAL_DATA_PATH}\polygons_contains.csv")
