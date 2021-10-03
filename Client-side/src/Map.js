@@ -5,21 +5,18 @@ import "./App.css";
 import MapboxDraw from "@mapbox/mapbox-gl-draw";
 import * as turf from "@turf/turf";
 import "mapbox-gl/dist/mapbox-gl.css";
+import { useHistory } from "react-router-dom";
 // import turf from "@turf/area";
 var coordinates;
 var dataResults;
-
 mapboxgl.accessToken =
   "pk.eyJ1IjoiamFkbWF0dGEiLCJhIjoiY2toc3phc2piMDN6YjJzb3l5MGgybDR4aSJ9.L9-ctcz9go1A5j7tspYQiQ";
-
 export default function Map() {
   const history = useHistory();
   const [lng, setLng] = useState(36.0862684249878);
-  const [lat, setLat] = useState(33.91717944990014);
+  const [lat, setLat] = useState(33.9171794499001);
   const [zoom, setZoom] = useState(17);
-
   // console.log(location.coordinates);
-
   // Initialize map when component mounts
   useEffect(() => {
     const map = new mapboxgl.Map({
@@ -28,10 +25,8 @@ export default function Map() {
       center: [lng, lat],
       zoom: zoom,
     });
-
     // Add navigation control (the +/- zoom buttons)
     map.addControl(new mapboxgl.NavigationControl(), "bottom-left");
-
     const draw = new MapboxDraw({
       displayControlsDefault: false,
       // Select which mapbox-gl-draw control buttons to add to the map.
@@ -43,11 +38,9 @@ export default function Map() {
       // The user does not have to click the polygon control button first.
     });
     map.addControl(draw, "top-right");
-
     map.on("draw.create", updateArea);
     map.on("draw.delete", updateArea);
     map.on("draw.update", updateArea);
-
     function updateArea(e) {
       const data = draw.getAll();
       if (e.type !== "draw.delete") {
@@ -66,10 +59,9 @@ export default function Map() {
             temp += "\n";
           }
         }
-        alert(temp);
+      
       }
     }
-
     map.on("move", () => {
       setLng(map.getCenter().lng.toFixed(4));
       setLat(map.getCenter().lat.toFixed(4));
@@ -78,7 +70,6 @@ export default function Map() {
     // Clean up on unmount
     return () => map.remove();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
-
   return (
     <div>
       <div className="sidebar">
@@ -108,11 +99,29 @@ export default function Map() {
                 return response.json();
               })
               .then(function (data) {
-                dataResults = data;
+                dataResults = data["features"][0]["properties"];
+                
+                if (dataResults.found == false) {
+                  alert("We do not have data for this location yet! Check back soon! :)")
+                } else {
+                history.push("Results", {
+                  airHumidity: dataResults.Air_Humidity,
+                  airSpeed: dataResults.Air_Speed,
+                  atmosphericPressure: dataResults.Atmospheric_Pressure,
+                  carbonMonoxide: dataResults.Carbon_Monoxide,
+                  soilHumidity: dataResults.Soil_Humidity,
+                  temperature: dataResults.Temperature,
+                  droneVege: dataResults.Vege_Ratio_Drone,
+                  nasaVege: dataResults.non_tree_v,
+                  long: dataResults.longitude,
+                  lat: dataResults.latitude  
+                });
+              }
                 console.log(dataResults);
               })
               .catch((error) => console.log(error));
-            history.push("Results", { data: 123 });
+            // history.push("Results", {data:dataResults.Air_Humidity});
+
           }}
         >
           Process Region

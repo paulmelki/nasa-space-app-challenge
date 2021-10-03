@@ -18,7 +18,7 @@ export default function Blog() {
   const mainFeaturedPost = {
     title: "Your Region has been processed!",
     description:
-      "Your results and recommendation are below. The closest data point we have is at Long: and Lat:  ",
+      `Your results and recommendation are below. The closest data point we have is at Long: ${location.state.long} and Lat: ${location.state.lat}.`,
     image: "",
     imageText: "",
     linkText: "",
@@ -26,43 +26,41 @@ export default function Blog() {
 
   const featuredPosts = [
     {
-      title: "Air Humidity",
-      description: `Air Humidity: ${location.state.data}`,
+      title: "Air Humidity: ",
+      description: `Air Humidity: ${location.state.airHumidity} %`,
     },
     {
-      title: "Air_Speed",
-      description:
-        "This is a wider card with supporting text below as a natural lead-in to additional content.",
+      title: "Air Speed: ",
+      description: `Air Speed: ${location.state.airSpeed} km/h`,
     },
     {
-      title: "Atmospheric_Pressure:",
-      description:
-        "This is a wider card with supporting text below as a natural lead-in to additional content.",
+      title: "Atmospheric Pressure:",
+      description: `Air Speed: ${location.state.atmospheriPressure} hPa (HectoPascal)`,
     },
     {
-      title: "Carbon_Monoxide:",
-      description:
-        "This is a wider card with supporting text below as a natural lead-in to additional content.",
+      title: "Carbon Monoxide:",
+      description: `Carbon Monoxide: ${location.state.carbonMonoxide} ppm (parts per million) / baseline: 4.4 (Fresh Air)`,
+
     },
     {
-      title: "Soil_Humidity:",
-      description:
-        "This is a wider card with supporting text below as a natural lead-in to additional content.",
+      title: "Soil Humidity:",
+      description: `Soil Humidity: ${location.state.soilHumidity} %`,
+
     },
     {
       title: "Temperature:",
-      description:
-        "This is a wider card with supporting text below as a natural lead-in to additional content.",
+      description: `Temperature: ${location.state.temperature} °C`,
+
     },
     {
       title: "NASA Terra Vegetation Continuous Fields (VCF5KYR):",
-      description:
-        "This is a wider card with supporting text below as a natural lead-in to additional content.",
+      description: `Vegetation Ratio (NASA): ${location.state.nasaVege} %`,
+
     },
     {
       title: "Vegetation Ratio (Drone):",
-      description:
-        "This is a wider card with supporting text below as a natural lead-in to additional content.",
+      description: "Vegetation Ratio (Drone): " + Math.round(100 * location.state.droneVege) + " %",
+
     },
   ];
 
