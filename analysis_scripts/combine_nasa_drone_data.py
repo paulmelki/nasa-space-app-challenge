@@ -36,5 +36,9 @@ drone_data_geo = gpd.GeoDataFrame(drone_data, geometry=gpd.points_from_xy(drone_
 # together.
 polygons_contains = gpd.sjoin(vege_cover_nasa, drone_data_geo, op='contains')
 
-# Save the obtained dataset to a .csv file.
+# save the obtained dataset to a .csv file.
 polygons_contains.to_csv(fr"{cts.LOCAL_DATA_PATH}\polygons_contains.csv")
+
+
+# Consummatum est. #
+# ################ #

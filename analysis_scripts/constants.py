@@ -38,3 +38,7 @@ DRONE_DATA_PATH = fr"{LOCAL_DATA_PATH}\drone_videos_mrhabib\videos_data_pivot_ve
 # using the drone. This path will be read in the script `compute_vegetation_ratio.py`
 # in order to compute the vegetation ratio on all the images in the directory.
 IMAGES_PATH = r"E:\Projects\nasa_space_challenge\data\drone_videos_mrhabib\images"
+
+
+# Consummatum est. #
+# ################ #

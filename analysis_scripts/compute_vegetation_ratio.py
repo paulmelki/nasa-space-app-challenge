@@ -76,10 +76,9 @@ def vegetation_ratio(img, img_name, save_dir=cts.LOCAL_DATA_PATH):
     return green_ratio
 
 
-# define the directory that contains all the images
-images_dir = cts.IMAGES_PATH
-
-drone_data = pd.read_excel(fr"{images_dir}\videos_data_pivot.xlsx")
+# Read the drone data in preparation which contains the paths to the images
+# on which to apply the algorithm
+drone_data = pd.read_excel(fr"{cts.LOCAL_DATA_PATH}\videos_data_pivot.xlsx")
 
 vege_ratios = []
 for i in range(len(drone_data)):
@@ -91,5 +90,9 @@ for i in range(len(drone_data)):
 
 drone_data["Vege_Ratio_Drone"] = vege_ratios
 
+# save the finalised data set.
 drone_data.to_csv(fr"{cts.LOCAL_DATA_DIR}\videos_data_pivot_vegeratio.csv", 
                     index=False)
+
+# Consummatum est. #
+# ################ #
