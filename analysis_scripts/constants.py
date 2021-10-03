@@ -33,3 +33,8 @@ NASA_VEGE_COVER_PATH = fr"{LOCAL_DATA_PATH}\vegetation_cover\vegetation_cover.zi
 # Longitude and Latitude, without which it cannot be transformed into a 
 # GeoDataFrame
 DRONE_DATA_PATH = fr"{LOCAL_DATA_PATH}\drone_videos_mrhabib\videos_data_pivot_vegeratio.csv"
+
+# This will be the path to the directory that contains the images obtained 
+# using the drone. This path will be read in the script `compute_vegetation_ratio.py`
+# in order to compute the vegetation ratio on all the images in the directory.
+IMAGES_PATH = r"E:\Projects\nasa_space_challenge\data\drone_videos_mrhabib\images"
