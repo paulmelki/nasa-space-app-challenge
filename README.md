@@ -1,3 +1,4 @@
-# NASA Space App Challenge - Urban Development
+# **UrbanWatch**
 
-## Authors: Jad Matta & Paul Melki
+## NASA SpaceApps Challenge 2021
+## CRDP Lebanese Space Phoenix (Beirut)
