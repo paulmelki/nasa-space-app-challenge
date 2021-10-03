@@ -3,9 +3,9 @@ import ReactDOM from "react-dom";
 import { BrowserRouter, Route, Redirect, Switch } from "react-router-dom";
 import "mapbox-gl/dist/mapbox-gl.css";
 // pages
-import Map from "./Map.js";
-import LandingPage from "./LandingPage.js";
-import Blog from "./blog/Blog.js";
+import Map from "./Map/Map.js";
+import LandingPage from "./LandingPage/LandingPage.js";
+import Results from "./results/Results.js";
 // others
 
 ReactDOM.render(
@@ -18,7 +18,7 @@ ReactDOM.render(
         <Map />
       </Route>
       <Route exact path="/Results">
-        <Blog />
+        <Results />
       </Route>
     </Switch>
   </BrowserRouter>,

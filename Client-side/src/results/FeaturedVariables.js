@@ -7,7 +7,7 @@ import CardActionArea from "@mui/material/CardActionArea";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 
-function FeaturedPost(props) {
+function FeaturedVariables(props) {
   const { post } = props;
 
   return (
@@ -22,13 +22,19 @@ function FeaturedPost(props) {
               {post.description}
             </Typography>
           </CardContent>
+          <CardMedia
+            component="img"
+            sx={{ width: 160, display: { xs: "none", sm: "block" } }}
+            image={post.image}
+            alt={post.imageLabel}
+          />
         </Card>
       </CardActionArea>
     </Grid>
   );
 }
 
-FeaturedPost.propTypes = {
+FeaturedVariables.propTypes = {
   post: PropTypes.shape({
     date: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
@@ -38,4 +44,4 @@ FeaturedPost.propTypes = {
   }).isRequired,
 };
 
-export default FeaturedPost;
+export default FeaturedVariables;

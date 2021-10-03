@@ -61,3 +61,7 @@ p {
   margin: 0;
   font-size: 13px;
 }
+
+.HeaderBackground {
+  background-color: black;
+}

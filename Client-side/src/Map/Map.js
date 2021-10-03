@@ -1,16 +1,16 @@
 import React, { useRef, useEffect, useState, useCallback } from "react";
 import mapboxgl from "mapbox-gl"; // eslint-disable-line import/no-webpack-loader-syntax
-import useGeoLocation from "./useGeoLocation";
-import "./App.css";
+import useGeoLocation from "../useGeoLocation";
+import "../App.css";
 import MapboxDraw from "@mapbox/mapbox-gl-draw";
 import * as turf from "@turf/turf";
 import "mapbox-gl/dist/mapbox-gl.css";
 import { useHistory } from "react-router-dom";
-// import turf from "@turf/area";
 var coordinates;
 var dataResults;
 mapboxgl.accessToken =
   "pk.eyJ1IjoiamFkbWF0dGEiLCJhIjoiY2toc3phc2piMDN6YjJzb3l5MGgybDR4aSJ9.L9-ctcz9go1A5j7tspYQiQ";
+
 export default function Map() {
   const history = useHistory();
   const [lng, setLng] = useState(36.0862684249878);
@@ -59,7 +59,6 @@ export default function Map() {
             temp += "\n";
           }
         }
-      
       }
     }
     map.on("move", () => {
@@ -100,28 +99,28 @@ export default function Map() {
               })
               .then(function (data) {
                 dataResults = data["features"][0]["properties"];
-                
+
                 if (dataResults.found == false) {
-                  alert("We do not have data for this location yet! Check back soon! :)")
+                  alert(
+                    "We do not have data for this location yet! Check back soon! :)"
+                  );
                 } else {
-                history.push("Results", {
-                  airHumidity: dataResults.Air_Humidity,
-                  airSpeed: dataResults.Air_Speed,
-                  atmosphericPressure: dataResults.Atmospheric_Pressure,
-                  carbonMonoxide: dataResults.Carbon_Monoxide,
-                  soilHumidity: dataResults.Soil_Humidity,
-                  temperature: dataResults.Temperature,
-                  droneVege: dataResults.Vege_Ratio_Drone,
-                  nasaVege: dataResults.non_tree_v,
-                  long: dataResults.longitude,
-                  lat: dataResults.latitude  
-                });
-              }
+                  history.push("Results", {
+                    airHumidity: dataResults.Air_Humidity,
+                    airSpeed: dataResults.Air_Speed,
+                    atmosphericPressure: dataResults.Atmospheric_Pressure,
+                    carbonMonoxide: dataResults.Carbon_Monoxide,
+                    soilHumidity: dataResults.Soil_Humidity,
+                    temperature: dataResults.Temperature,
+                    droneVege: dataResults.Vege_Ratio_Drone,
+                    nasaVege: dataResults.non_tree_v,
+                    long: dataResults.longitude,
+                    lat: dataResults.latitude,
+                  });
+                }
                 console.log(dataResults);
               })
               .catch((error) => console.log(error));
-            // history.push("Results", {data:dataResults.Air_Humidity});
-
           }}
         >
           Process Region

@@ -10,11 +10,12 @@ import Link from "@mui/material/Link";
 function Header(props) {
   return (
     <React.Fragment>
-      <Toolbar sx={{ borderBottom: 1, borderColor: "divider" }}>
+      <Toolbar sx={{ borderBottom: 3, borderColor: "divider" }}>
         <Typography
           component="h2"
-          variant="h5"
-          color="inherit"
+          variant="h2"
+          color="white"
+          className="HeaderBackground"
           align="center"
           noWrap
           sx={{ flex: 1 }}
