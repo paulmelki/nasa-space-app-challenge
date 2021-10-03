@@ -79,13 +79,6 @@ def vegetation_ratio(img, img_name, save_dir=os.getcwd()):
 # define the directory that contains all the images
 image_dir = r"E:\Projects\nasa_space_challenge\data\drone_videos_mrhabib\images"
 
-# for entry in os.scandir(image_dir):
-#     img = cv2.imread(entry.path)
-
-#     print(vegetation_ratio(img, img_name=entry.name,
-#                            save_dir=r"E:\Projects\nasa_space_challenge\data\drone_videos_mrhabib\images\transformed"))
-
-
 drone_data = pd.read_excel(r"E:\Projects\nasa_space_challenge\data\drone_videos_mrhabib\videos_data_pivot.xlsx")
 
 vege_ratios = []
