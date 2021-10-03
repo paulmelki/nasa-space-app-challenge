@@ -19,4 +19,9 @@ An important challenge which poses itself is then the methodology of combination
 
 As our drone data are spatial points, and the NASA-retrieved data are polygons with lower resolution, the data combination technique consists of applying a “point-in-polygon” approach which finds, for a given spatial point (drone) the polygon to which it belongs (NASA). From here, the variables can be fused together and aggregated over the spatial field if needed using multiple possible techniques, the simplest being an average over the spatial field.
 
-![sdsdf](https://drive.google.com/file/d/1CTDCpEmFUzC5pTNi8cqxP3zU2rZ3lIQO/view?usp=sharing)
+---
+
+## Development
+First of all, our web app is divided into 2 parts, the front-end and the back-end. The front-end consists of the user-interface, where the user visualizes and interacts with the application. The back-end consists of all the data processing for the application. The front-end and back-end have to be connected to each other in order to have our app fully functioning. The front-end includes an integrated map of the earth that displays a satellite view. From this satellite view we offer the user the ability to select a region of his/her choice. The selected region is considered to be in the form of a polygon. After the selection of this region, the coordinates are then sent to the back-end. 
+
+In the back-end, the coordinates retrieved from the front-end are then unpacked and intersected with the entries in the database along the spatial dimension. Given the coordinates, we apply a point-in-polygon approach intersecting the vertices of the chosen polygon with the polygons in the database. If data is found, then the relevant records are returned in JSON format to be displayed on the front-end. 
