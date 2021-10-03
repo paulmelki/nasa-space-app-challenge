@@ -13,11 +13,11 @@ import os
 import cv2
 import numpy as np
 import pandas as pd
+import constants as cts
+
 
 # define the function
-
-
-def vegetation_ratio(img, img_name, save_dir=os.getcwd()):
+def vegetation_ratio(img, img_name, save_dir=cts.LOCAL_DATA_PATH):
     """
     Function that computes the vegetation ratio in the provided image, based
     on thresholding in HSV color space. This is a simple algorithm, and
@@ -30,7 +30,7 @@ def vegetation_ratio(img, img_name, save_dir=os.getcwd()):
     :param save_dir: str
         path of the directory in which to save the intermediary images, and
         the final segmented image.
-        By default, the current working directory.
+        By default, the defined local directory.
 
     :return vege_ratio: float
         floating point number in [0, 1], the proportion of green pixels in the
@@ -76,10 +76,9 @@ def vegetation_ratio(img, img_name, save_dir=os.getcwd()):
     return green_ratio
 
 
-# define the directory that contains all the images
-image_dir = r"E:\Projects\nasa_space_challenge\data\drone_videos_mrhabib\images"
-
-drone_data = pd.read_excel(r"E:\Projects\nasa_space_challenge\data\drone_videos_mrhabib\videos_data_pivot.xlsx")
+# Read the drone data in preparation which contains the paths to the images
+# on which to apply the algorithm
+drone_data = pd.read_excel(fr"{cts.LOCAL_DATA_PATH}\videos_data_pivot.xlsx")
 
 vege_ratios = []
 for i in range(len(drone_data)):
@@ -91,5 +90,9 @@ for i in range(len(drone_data)):
 
 drone_data["Vege_Ratio_Drone"] = vege_ratios
 
-drone_data.to_csv(r"E:\Projects\nasa_space_challenge\data\drone_videos_mrhabib\videos_data_pivot_vegeratio.csv", 
+# save the finalised data set.
+drone_data.to_csv(fr"{cts.LOCAL_DATA_DIR}\videos_data_pivot_vegeratio.csv", 
                     index=False)
+
+# Consummatum est. #
+# ################ #
