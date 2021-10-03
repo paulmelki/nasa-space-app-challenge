@@ -52,7 +52,7 @@ export default function Results() {
     },
     {
       title: "Carbon Monoxide:",
-      description: `Carbon Monoxide: ${location.state.carbonMonoxide} ppm (parts per million) / baseline: 4.4 (Fresh Air)`,
+      description: `Carbon Monoxide: ${location.state.carbonMonoxide} Rs/R0`,
       image: co2,
     },
     {
@@ -80,6 +80,20 @@ export default function Results() {
     },
   ];
 
+  var recommendation_vege; 
+  var vegeAvgRatio = (100 * location.state.droneVege + location.state.nasaVege) / 2
+  if (vegeAvgRatio > 45) {
+    recommendation_vege = "Healthy level of vegetation! Wouhou! :D \n"
+  } else {
+    recommendation_vege = "You may need to reconsider your levels of greenery... :( \n"
+  }
+
+  var recommendation_co;
+  if (location.state.carbonMonoxide > 4.4) {
+    recommendation_co = "Air quality appropriate for vegetation, seed germination and living! Wouhou! :D \n"
+  } else {
+    recommendation_co = "Dangerous levels of Carbon Monoxide: report to authorities! :O \n"
+  }
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
@@ -97,7 +111,10 @@ export default function Results() {
           <Card sx={{ display: "flex" }}>
             <CardContent sx={{ flex: 1 }}>
               <Typography component="h2" variant="h5">
-                {/* {location.state.dataResult.Recommendation} */}
+              {recommendation_vege}
+              </Typography>
+              <Typography component="h2" variant="h5">
+              {recommendation_co}
               </Typography>
             </CardContent>
           </Card>
